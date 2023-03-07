@@ -63,7 +63,44 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="checkCredentials()">
+	  <script>
+		  function checkCredentials() {
+  // Load the username and password from the JSON files
+  const xhrUsername = new XMLHttpRequest();
+  xhrUsername.overrideMimeType("application/json");
+  xhrUsername.open('GET', 'username.json', true);
+  xhrUsername.onreadystatechange = function () {
+    if (xhrUsername.readyState == 4 && xhrUsername.status == "200") {
+      const usernameData = JSON.parse(xhrUsername.responseText);
+      const username = usernameData.username;
+
+      const xhrPassword = new XMLHttpRequest();
+      xhrPassword.overrideMimeType("application/json");
+      xhrPassword.open('GET', 'password.json', true);
+      xhrPassword.onreadystatechange = function () {
+        if (xhrPassword.readyState == 4 && xhrPassword.status == "200") {
+          const passwordData = JSON.parse(xhrPassword.responseText);
+          const password = passwordData.password;
+
+          // Ask the user for their username and password using prompts
+          const enteredUsername = prompt("Enter your username:");
+          const enteredPassword = prompt("Enter your password:");
+
+          // Check if the entered credentials match the stored username and password
+          if (enteredUsername === username && enteredPassword === password) {
+            alert("Login successful!");
+          } else {
+            alert("Incorrect username or password. Please try again.");
+          }
+        }
+      };
+      xhrPassword.send(null);
+    }
+  };
+  xhrUsername.send(null);
+}
+	  </script>
     <h1>✨Code Pool References✨</h1>
     <!--ROMANS.HTML-->
     <div class="code-block">
