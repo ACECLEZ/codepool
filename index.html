@@ -64,6 +64,7 @@
     </style>
   </head>
   <body onload="checkCredentials()">
+	  <noscript>JAVASCRIPT REQURIED. PLEASE ENABLE JAVASCRIPT FOR BROWSER</noscript>
     <script>
       function checkCredentials() {
         // Load the username and password from the JSON files
@@ -297,13 +298,13 @@
       var clipboard = new ClipboardJS('.copy-button');
       // Log successful copy to console
       clipboard.on('success', function(e) {
-        console.log('Copied to clipboard!');
+        console.log('copied to clipboard');
         alert('Code copied successfully!');
         e.clearSelection();
       });
       // Log unsuccessful copy to console
       clipboard.on('error', function(e) {
-        console.log('Unable to copy!');
+        console.log('copy error!');
         alert('Unable to copy code!');
       });
     </script>
